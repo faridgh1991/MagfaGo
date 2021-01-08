@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// Client is magfa service client that has multiple methods to communicate with magfa services
 type Client struct {
 	httpClient *http.Client
 	baseUrl    string
@@ -17,6 +18,7 @@ type Client struct {
 	domain     string
 }
 
+// New magfa client
 func New(username, domain, password string, timeout time.Duration) (*Client, error) {
 	httpClient := &http.Client{
 		Timeout: timeout,
@@ -30,6 +32,7 @@ func New(username, domain, password string, timeout time.Duration) (*Client, err
 	}, nil
 }
 
+// SetBaseUrl to magfa client for change url address
 func (c *Client) SetBaseUrl(url string) {
 	c.baseUrl = url
 }

@@ -1,5 +1,11 @@
 # MagfaGo
+[![Go Report Card](https://goreportcard.com/badge/github.com/faridgh1991/MagfaGo)](https://goreportcard.com/report/github.com/faridgh1991/MagfaGo)
+[![GoDoc](https://godoc.org/github.com/faridgh1991/MagfaGo?status.svg)](https://pkg.go.dev/github.com/faridgh1991/MagfaGo)
+[![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/faridgh1991/MagfaGo/blob/master/LICENSE)
+
 Magfa SDK for Golang
+
+- base on [Magfa http API v2](https://messaging.magfa.com/ui/?public/wiki/api/http_v2)
 
 
 ### Install

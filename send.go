@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// SendRequest is structure of send sms requests with senders, recipients, messages and etc.
 type SendRequest struct {
 	Senders    []string `json:"senders,omitempty"`
 	Recipients []string `json:"recipients,omitempty"`
@@ -15,11 +16,12 @@ type SendRequest struct {
 	Udhs       []string `json:"udhs,omitempty"`
 }
 
-type SendResult struct {
+type sendResult struct {
 	Messages []SendResponse
 	Status   int
 }
 
+// SendResponse is result of send Request for each message
 type SendResponse struct {
 	Status     int
 	Id         int64
@@ -31,6 +33,7 @@ type SendResponse struct {
 	StatusText string
 }
 
+// Send a send request to magfa server
 func (c *Client) Send(request SendRequest) ([]SendResponse, error) {
 
 	body, err := json.Marshal(request)
@@ -39,7 +42,7 @@ func (c *Client) Send(request SendRequest) ([]SendResponse, error) {
 		return nil, fmt.Errorf("send failed: %s", err.Error())
 	}
 
-	var resp SendResult
+	var resp sendResult
 	err = json.Unmarshal(raw, &resp)
 	if err != nil {
 		return nil, fmt.Errorf("unmarshal response: %s", err.Error())

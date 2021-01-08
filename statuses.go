@@ -8,11 +8,12 @@ import (
 	"strings"
 )
 
-type StatusesResult struct {
+type statusesResult struct {
 	Status int
 	Dlrs   []DeliveryStatus
 }
 
+// DeliveryStatus is structure that contain status and date of each message
 type DeliveryStatus struct {
 	Mid        int64
 	Status     int
@@ -30,6 +31,7 @@ var deliveryStatuses = map[int]string{
 	16: "Forwarding to ITC",
 }
 
+// GetStatuses of delivery for a list of mid
 func (c *Client) GetStatuses(mids []int64) ([]DeliveryStatus, error) {
 	var valuesText []string
 	for i := range mids {
@@ -45,7 +47,7 @@ func (c *Client) GetStatuses(mids []int64) ([]DeliveryStatus, error) {
 		return nil, err
 	}
 
-	var resp StatusesResult
+	var resp statusesResult
 	err = json.Unmarshal(raw, &resp)
 	if err != nil {
 		return nil, err

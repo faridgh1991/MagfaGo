@@ -6,11 +6,12 @@ import (
 	"net/http"
 )
 
-type MessagesResult struct {
+type messagesResult struct {
 	Messages []Message
 	Status   int
 }
 
+// Message is structure of received message
 type Message struct {
 	Body            string
 	SenderNumber    string
@@ -18,6 +19,7 @@ type Message struct {
 	Date            CustomTime
 }
 
+// GetMessages that received to magfa servers
 func (c *Client) GetMessages(count int) ([]Message, error) {
 	if count < 1 || count > 100 {
 		return nil, fmt.Errorf("message counts must be between 1 and 100")
@@ -28,7 +30,7 @@ func (c *Client) GetMessages(count int) ([]Message, error) {
 		return nil, err
 	}
 
-	var resp MessagesResult
+	var resp messagesResult
 	err = json.Unmarshal(raw, &resp)
 	if err != nil {
 		return nil, err

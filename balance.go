@@ -5,18 +5,19 @@ import (
 	"net/http"
 )
 
-type BalanceResult struct {
+type balanceResult struct {
 	Balance int
 	Status  int
 }
 
+// GetBalance of account from magfa
 func (c *Client) GetBalance() (int, error) {
 	raw, err := c.sendRequest("balance", http.MethodGet, nil)
 	if err != nil {
 		return 0, err
 	}
 
-	var resp BalanceResult
+	var resp balanceResult
 	err = json.Unmarshal(raw, &resp)
 	if err != nil {
 		return 0, err
